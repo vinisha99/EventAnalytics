@@ -5,10 +5,23 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedStoredProcedureQueries;
+import javax.persistence.NamedStoredProcedureQuery;
+import javax.persistence.ParameterMode;
+import javax.persistence.StoredProcedureParameter;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "event_records")
+@NamedStoredProcedureQuery(
+		name = "EventRecords.getEventStats",
+		procedureName="getUniqueUsersByTimestamp",
+		parameters= {
+				@StoredProcedureParameter(mode = ParameterMode.IN, name = "epochTime", type = Long.class),
+				@StoredProcedureParameter(mode = ParameterMode.OUT, name = "uniqueUsers", type = Long.class),
+				@StoredProcedureParameter(mode = ParameterMode.OUT, name = "totalClicks", type = Long.class),
+				@StoredProcedureParameter(mode = ParameterMode.OUT, name = "totalImpressions", type = Long.class)
+				})
 public class EventRecords {
 
 	@Id
@@ -44,10 +57,6 @@ public class EventRecords {
 
 	public Long getID() {
 		return ID;
-	}
-
-	public void setID(Long iD) {
-		ID = iD;
 	}
 
 	public String getUserID() {

@@ -9,9 +9,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 public class EventAnalyticsApplication {
 
 	public static void main(String[] args) {
-		System.out.println("Application Start");
 		SpringApplication.run(EventAnalyticsApplication.class, args);
-		System.out.println("Application End");
 		
 	}
 
