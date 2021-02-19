@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.http.MediaType;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,29 +23,31 @@ import com.eventAnalytics.application.services.EventRecordsService;
 @RestController
 @RequestMapping("/analytics")
 public class EventController {
+	final Logger logger = Logger.getLogger(EventController.class);
 	
 	@Autowired
 	private EventRecordsService eventRecordsService;
 	
 	@PostMapping("/")
 	public EventRecords saveEventRecord(@RequestBody EventRecords eventRecord) {
-		System.out.println("Inside post controller");
+		logger.info("Inside post controller: Save event record");
 		long currentEpocTime = Instant.now().toEpochMilli();
 		eventRecord.setEpochTime(currentEpocTime);
-		System.out.println("Event record created: "+ eventRecord.getUserID());
+		logger.info("Event record inserted with userID: "+ eventRecord.getUserID());
 		return eventRecordsService.saveEventRecord(eventRecord);
 	}
 	
 	@GetMapping("/id/{ID}")
 	public EventRecords getByID(@PathVariable("ID") Long ID) {
+		logger.info("Inside get controller : get record by ID");
 		return eventRecordsService.getByID(ID);
 	}
 	
 	@GetMapping("/{epochTime}")
-	public String getUniqueUsersByTimestamp(@PathVariable("epochTime") Long epochTime){
-		
-		System.out.println("Inside sp call controller");
-		String eventStats = eventRecordsService.getUniqueUsersByTimestamp(epochTime);
+	public String getEventStatsByTimestamp(@PathVariable("epochTime") Long epochTime){
+		logger.info("Inside get controller : get UniqueUsers By Timestamp");
+		String eventStats = eventRecordsService.getEventStatsByTimestamp(epochTime);
+		logger.info("Inside get controller : Received Event stats");
 		return eventStats;
 	}
 
