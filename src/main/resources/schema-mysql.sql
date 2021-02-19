@@ -1,7 +1,7 @@
 CREATE DATABASE IF NOT EXISTS narrativeio;
 use narrativeio;
 
-CREATE TABLE IF NOT EXISTS employee (
+CREATE TABLE IF NOT EXISTS event_records (
     id bigint NOT NULL, 
     userid VARCHAR(255), 
     event_type int,
