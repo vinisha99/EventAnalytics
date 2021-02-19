@@ -15,12 +15,13 @@ import javax.persistence.Table;
 @Table(name = "event_records")
 @NamedStoredProcedureQuery(
 		name = "EventRecords.getEventStats",
-		procedureName="getUniqueUsersByTimestamp",
+		procedureName="getEventStatsByTimestamp",
 		parameters= {
-				@StoredProcedureParameter(mode = ParameterMode.IN, name = "epochTime", type = Long.class),
-				@StoredProcedureParameter(mode = ParameterMode.OUT, name = "uniqueUsers", type = Long.class),
-				@StoredProcedureParameter(mode = ParameterMode.OUT, name = "totalClicks", type = Long.class),
-				@StoredProcedureParameter(mode = ParameterMode.OUT, name = "totalImpressions", type = Long.class)
+				@StoredProcedureParameter(mode = ParameterMode.IN, name = "epochLowerBound", type = Long.class),
+				@StoredProcedureParameter(mode = ParameterMode.IN, name = "epochUpperBound", type = Long.class),
+				@StoredProcedureParameter(mode = ParameterMode.OUT, name = "uniqueUsers", type = Integer.class),
+				@StoredProcedureParameter(mode = ParameterMode.OUT, name = "totalClicks", type = Integer.class),
+				@StoredProcedureParameter(mode = ParameterMode.OUT, name = "totalImpressions", type = Integer.class)
 				})
 public class EventRecords {
 
