@@ -1,7 +1,6 @@
 # EventAnalytics for Narrative
 
-Requirements:
-
+Requirements:  
 As a part of integrating with our partners, Narrative supports collecting data on website visitors and returning some basic analytics on those visitors. The goal of this task is to implement a basic endpoint for this use case. It should accept the following over HTTP:
 POST /analytics?timestamp={millis_since_epoch}&user={user_id}&event={click|impression}
 GET /analytics?timestamp={millis_since_epoch}
@@ -23,22 +22,28 @@ Prerequisites:
 * Maven 3.2+  [brew install maven] (Mac)
 * MySQL database [brew install mysql] (Mac)
 
-Clone Repository from GitHub
-https://github.com/vinisha99/EventAnalytics.git
+1. Launch Terminal
+2. Clone Repository from GitHub
+> git clone https://github.com/vinisha99/EventAnalytics.git
 
-Go inside the Project folder and copy contents of “src/main/resources/schema-mysql.sql” file.
+3. Go inside the Project folder and copy contents of `src/main/resources/schema-mysql.sql` file.
 
-Connect to mysql cli on the terminal using command: 
+4. Connect to mysql cli on the terminal using command:   
+> mysql.server start  
+> mysql -u root -p
+(Enter your default password of root user)  
 
-    `mysql.server start`
- 
-    `mysql -u root -p`  (Enter your default password of root user)
+5. Paste contents from `src/main/resources/schema-mysql.sql` file and hit enter.
+6. `Exit` mysql cli
 
-Paste contents from “src/main/resources/schema-mysql.sql” file and hit enter.
-
-Launch application using command:
-
-    `./mvnw spring-boot:run`
+7. Make sure you are in the `EventAnalytics` folder.
+8. Launch application using command:
+> ./mvnw spring-boot:run  
 
 APIs should now be working !!!
 
+## Sample API URLs
+
+POST : http://localhost:8080/analytics?user=kv90&event=click&timestamp=1613685486860
+
+GET : http://localhost:8080/analytics?timestamp=1613685486860
