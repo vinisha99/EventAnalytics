@@ -1,5 +1,7 @@
 # EventAnalytics for Narrative
 
+Requirements:
+
 As a part of integrating with our partners, Narrative supports collecting data on website visitors and returning some basic analytics on those visitors. The goal of this task is to implement a basic endpoint for this use case. It should accept the following over HTTP:
 POST /analytics?timestamp={millis_since_epoch}&user={user_id}&event={click|impression}
 GET /analytics?timestamp={millis_since_epoch}
@@ -13,4 +15,30 @@ impressions,{number_of_impressions}
 It is worth noting that the traffic pattern is typical of time series data. The service will receive many more GET requests (~95%) for the current hour than for past hours (~5%). The same applies for POST requests.
 Please ensure that the code in the submission is fully functional on a local machine, and include instructions for building and running it. Although it should still pass muster in code review, it is fine for the code to not be completely production ready in the submission. For example, using local storage like in-memory H2 instead of dedicated MySQL is OK. As a guide for design decisions, treat this exercise as the initial prototype of an MVP that will need to be productionalized and scaled out in the future, and be prepared for follow-up discussion on how that would look.
 
+## Installation Steps:
+
+Prerequisites:
+* JDK 1.8 or later
+* Java 11
+* Maven 3.2+  [brew install maven] (Mac)
+* MySQL database [brew install mysql] (Mac)
+
+Clone Repository from GitHub
+https://github.com/vinisha99/EventAnalytics.git
+
+Go inside the Project folder and copy contents of “src/main/resources/schema-mysql.sql” file.
+
+Connect to mysql cli on the terminal using command: 
+
+    `mysql.server start`
+ 
+    `mysql -u root -p`  (Enter your default password of root user)
+
+Paste contents from “src/main/resources/schema-mysql.sql” file and hit enter.
+
+Launch application using command:
+
+    `./mvnw spring-boot:run`
+
+APIs should now be working !!!
 
