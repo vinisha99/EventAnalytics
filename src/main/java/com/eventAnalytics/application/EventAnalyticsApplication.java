@@ -1,5 +1,6 @@
 package com.eventAnalytics.application;
 
+import org.apache.log4j.Logger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -9,9 +10,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 public class EventAnalyticsApplication {
 
 	public static void main(String[] args) {
-		System.out.println("Application Start");
+		final Logger logger = Logger.getLogger(EventAnalyticsApplication.class);
+		
+		logger.info("Event Analytics Application started");
 		SpringApplication.run(EventAnalyticsApplication.class, args);
-		System.out.println("Application End");
 		
 	}
 
