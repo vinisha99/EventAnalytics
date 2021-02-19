@@ -32,7 +32,6 @@ public class EventRecordsService {
 		return eventRecordsRepository.save(eventRecord);
 	}
 	
-	@SuppressWarnings("unchecked")
 	public String getEventStatsByTimestamp(Long epochTime){
 		logger.info("Inside service layer : getUniqueUsersByTimestamp");
 		
